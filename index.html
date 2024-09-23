@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Estoque</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #dee2e6;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .export-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .export-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gerenciador de Estoque</h1>
+    <div class="container">
+        <h2>Adicionar Produto</h2>
+        <input type="text" id="nomeProduto" placeholder="Nome do produto" required>
+        <input type="number" id="quantidadeProduto" placeholder="Quantidade" required>
+        <input type="number" id="precoProduto" placeholder="Preço por unidade (R$)" required>
+        <button onclick="adicionarProduto()">Adicionar Produto</button>
+
+        <h2>Estoque Atual</h2>
+        <table id="tabelaEstoque">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço (R$)</th>
+                    <th>Total (R$)</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Produtos serão adicionados aqui -->
+            </tbody>
+        </table>
+        <button class="export-btn" onclick="exportarParaExcel()">Exportar para Excel</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Verificar se o usuário está autenticado
+        window.onload = function() {
+            if (!sessionStorage.getItem('loggedIn')) {
+                // Se o usuário não estiver logado, redireciona para a página de login
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>
